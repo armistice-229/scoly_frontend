@@ -99,8 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
     submitBtn.disabled = true;
 
     try {
-      // Simule un délai (par ex. appel API)
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+      
       const response = await fetch("https://scoly-backend.onrender.com/api/certificat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
