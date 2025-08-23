@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Générez instantanément un certificat de scolarité officiel en ligne avec Scoly. Rapide, sécurisé et fiable." />
+  <meta name="author" content="Scoly" />
+  <title>Génération du Certificat | Scoly</title>
+
+  <!-- SEO Open Graph -->
+  <meta property="og:title" content="Générez votre certificat de scolarité en ligne - Scoly" />
+  <meta property="og:description" content="Un formulaire simple pour obtenir rapidement votre certificat de scolarité." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="fr_FR" />
+
+  <!-- Polices -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon">
+
+  <link rel="stylesheet" href="../styles/certificat.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <a href="../index.html" class="logo" aria-label="Logo du site MonCertificat">Scoly</a>
+    <nav class="header-nav" aria-label="Navigation principale">
+      <button aria-label="Voir comment ça marche">Comment ça marche</button>
+    </nav>
+  </header>
+
+  <!-- ================= INTRO ================= -->
+  <section class="intro" role="region" aria-labelledby="intro-title">
+    <h1 id="intro-title">Générez votre Certificat de Scolarité</h1>
+    <p class="subtitle">
+      Remplissez le formulaire ci-dessous avec vos informations scolaires et personnelles. 
+      Votre certificat officiel sera généré automatiquement.
+    </p>
+  </section>
+
+  <!-- ================= FORMULAIRE ================= -->
+  <main class="form-section" role="main">
+    <form id="certificat-form" aria-label="Formulaire de génération du certificat">
+
+      <!-- Carte : Informations sur l’école -->
+      <div class="certificat-form-container">
+        <fieldset class="form-card">
+          <div class="card-header">
+            <img src="../assets/school.png" alt="" class="card-icon" />
+            <legend>Informations sur l'école</legend>
+          </div>
+          <div class="card-body">
+            <label for="ecole">Nom de l'école</label>
+            <input type="text" id="ecole" name="nomEcole" required />
+  
+            <label for="departement">Département</label>
+            <select id="departement" name="departement" required>
+              <option value="">Sélectionner un département</option>
+            </select>
+
+            <label for="ville">Commune</label>
+            <select id="ville" name="ville" required>
+              <option value="">Sélectionner une commune</option>
+            </select>
+  
+            <label for="directeur">Nom et prénom du directeur</label>
+            <input type="text" id="directeur" name="nomDirecteur" required />
+
+            <div class="radios">
+              <label>
+              <input type="radio" name="genreDirecteur" value="Directeur" required>
+                <span>Directeur</span>
+              </label>
+              <label>
+                <input type="radio" name="genreDirecteur" value="Directrice" required>
+                <span>Directrice</span>
+              </label>
+            </div>
+            
+
+          </div>
+        </fieldset>
+  
+        <!-- Carte : Informations sur l’élève -->
+        <fieldset class="form-card">
+          <div class="card-header">
+            <img src="../assets/graduated.png" alt="" class="card-icon" />
+            <legend>Informations sur l'élève</legend>
+          </div>
+          <div class="card-body">
+            <label for="eleve">Nom et prénom de l’élève</label>
+            <input type="text" id="eleve" name="nomEleve" required />
+  
+            <label for="matricule">Numéro matricule</label>
+            <input type="number" id="matricule" name="matricule" required />
+  
+            <label for="date-naissance">Date de naissance</label>
+            <input type="date" id="date-naissance" name="dateNaissance" required />
+  
+            <label for="lieu-naissance">Lieu de naissance</label>
+            <input type="text" id="lieu-naissance" name="lieuNaissance" required />
+  
+            <label for="classe">Classe actuelle</label>
+            <input type="text" id="classe" name="classe" required />
+  
+            <label for="date-inscription">Date de première inscription</label>
+            <input type="date" id="date-inscription" name="dateInscription" required />
+          </div>
+        </fieldset>
+  
+        <!-- Carte : Appréciations -->
+        <fieldset class="form-card">
+          <div class="card-header">
+            <img src="../assets/assessment.png" alt="" class="card-icon" />
+            <legend>Appréciations (optionnel)</legend>
+          </div>
+          <div class="card-body">
+            <label for="assiduite">Assiduité</label>
+            <input type="text" id="assiduite" name="assiduite" />
+  
+            <label for="conduite">Conduite</label>
+            <input type="text" id="conduite" name="conduite" />
+  
+            <label for="travail">Travail</label>
+            <input type="text" id="travail" name="travail" />
+          </div>
+        </fieldset>
+  
+        <!-- Carte : Observations -->
+        <fieldset class="form-card">
+          <div class="card-header">
+            <img src="../assets/wirte.png" alt="" class="card-icon" />
+            <legend>Observations particulières</legend>
+          </div>
+          <div class="card-body">
+            <label for="observation">Observation particulière</label>
+            <textarea id="observation" name="observations" rows="4" aria-describedby="observation-help"></textarea>
+            <small id="observation-help">
+              Facultatif, pour toute remarque supplémentaire concernant l'élève.
+            </small>
+          </div>
+        </fieldset>
+      </div>
+
+      <!-- Actions -->
+      <div class="form-actions">
+        <button type="submit" class="btn-primary" aria-label="Générer le certificat">
+          <span class="btn-label">Générer mon certificat</span>
+          <span class="btn-spinner" aria-hidden="true"></span>
+        </button>
+        <button type="reset" class="btn-secondary" aria-label="Réinitialiser le formulaire">Réinitialiser</button>
+      </div>
+    </form>
+  </main>
+
+<!-- ================= MODALE ================= -->
+<div id="certificat-modal" 
+     class="fixed inset-0 bg-black/50 hidden z-50 flex items-center justify-center p-4 transition-opacity duration-300 opacity-0">
+  <div class="bg-white rounded-2xl shadow-2xl w-full max-w-3xl relative transform scale-95 transition-transform duration-300">
+
+    <!-- Bouton fermeture -->
+    <button 
+      class="modal-close absolute top-3 right-3 text-gray-500 hover:text-gray-800 text-2xl"
+      aria-label="Fermer la fenêtre">
+      &times;
+    </button>
+
+    <!-- Titre -->
+    <h2 id="modal-title" class="text-xl font-semibold text-center text-gray-800 border-b py-3">
+      Votre Certificat de Scolarité
+    </h2>
+
+    <!-- Contenu -->
+    <div class="p-4 certificat-preview text-center">
+      <p><em>Aperçu du certificat généré...</em></p>
+    </div>
+
+    <!-- Footer bouton (Desktop uniquement) -->
+    <div class="border-t p-4 text-center">
+      <button class="btn-download bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg shadow-md transition">
+        Télécharger
+      </button>
+    </div>
+  </div>
+</div>
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer" role="contentinfo">
+    <p>&copy; 2025 Scoly. Tous droits réservé | Contact: +229 01 59 28 78 15</p>
+  </footer>
+  <!-- Script -->
+   
+  <script src="../scripts/certificat.js"></script>
+
+</body>
+</html>
