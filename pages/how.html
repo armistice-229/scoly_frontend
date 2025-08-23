@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <!-- Métadonnées de base -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comment ça marche | Scoly - Générateur de Certificat de Scolarité</title>
+  <meta name="description" content="Découvrez comment générer facilement votre certificat de scolarité en 3 étapes simples avec Scoly.">
+  <meta name="keywords" content="certificat de scolarité, comment ça marche, étapes, guide, Scoly">
+  <meta name="author" content="Scoly">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Comment ça marche | Scoly - Générateur de Certificat de Scolarité">
+  <meta property="og:description" content="3 étapes simples pour obtenir votre certificat de scolarité officiel.">
+  <meta property="og:type" content="website">
+
+  <!-- GOOGLE FONTS -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Poppins:wght@600&display=swap" rel="stylesheet">
+
+  <!-- Icône -->
+  <link rel="icon" href="../assets/favicon.ico" type="image/x-icon">
+
+  <!-- Styles -->
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #0c213d 0%, #142f54 100%);
+      color: #f8f9fa;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    a {
+      color: #38bdf8;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    a:hover {
+      color: #7dd3fc;
+      text-decoration: underline;
+    }
+
+    /* HEADER */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.5rem;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(15px);
+      border-radius: 14px;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
+      max-width: 1300px;
+      margin: 1rem auto;
+    }
+
+    .logo {
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -0.5px;
+      text-shadow: 0 3px 8px rgba(0, 0, 0, 0.35);
+      text-decoration: none;
+    }
+
+    .logo:hover {
+      text-decoration: none;
+    }
+
+    .header-nav button {
+      background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+      border: none;
+      padding: 0.7rem 1.6rem;
+      border-radius: 12px;
+      font-size: 1rem;
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .header-nav button:hover {
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 6px 16px rgba(56, 189, 248, 0.45);
+    }
+
+    /* CONTENU PRINCIPAL */
+    .main-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+    }
+
+    .page-title {
+      text-align: center;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+
+    .page-subtitle {
+      text-align: center;
+      color: #d1d5db;
+      font-size: 1.1rem;
+      margin-bottom: 4rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ÉTAPES */
+    .steps-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem;
+      margin-bottom: 4rem;
+    }
+
+    .step-card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(15px);
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      transition: 0.3s;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .step-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+    }
+
+    .step-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+      border-radius: 50%;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 1.5rem;
+    }
+
+    .step-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+
+    .step-description {
+      color: #cbd5e1;
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .step-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      opacity: 0.8;
+    }
+
+    /* CTA SECTION */
+    .cta-section {
+      text-align: center;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 16px;
+      padding: 3rem 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .cta-title {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+
+    .cta-description {
+      color: #d1d5db;
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+      color: #fff;
+      padding: 1rem 2.5rem;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(56, 189, 248, 0.4);
+      text-decoration: none;
+    }
+
+    /* FOOTER */
+    .footer {
+      text-align: center;
+      padding: 1.8rem;
+      background: #1e293b;
+      color: #cbd5e1;
+      margin-top: 3rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .header {
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 0.6rem;
+        padding: 0.8rem 1rem;
+      }
+
+      .logo {
+        font-size: 1.6rem;
+      }
+
+      .header-nav button {
+        padding: 0.6rem 1rem;
+        font-size: 0.95rem;
+      }
+
+      .main-content {
+        padding: 2rem 1rem;
+      }
+
+      .page-title {
+        font-size: 2rem;
+      }
+
+      .page-subtitle {
+        font-size: 1rem;
+        margin-bottom: 3rem;
+      }
+
+      .steps-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .step-card {
+        padding: 2rem 1.5rem;
+      }
+
+      .cta-section {
+        padding: 2rem 1.5rem;
+      }
+
+      .cta-title {
+        font-size: 1.5rem;
+      }
+
+      .cta-btn {
+        padding: 0.8rem 2rem;
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .logo {
+        font-size: 1.4rem;
+      }
+
+      .page-title {
+        font-size: 1.7rem;
+      }
+
+      .step-card {
+        padding: 1.5rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="header">
+    <a href="../index.html" class="logo" aria-label="Accueil - Scoly">Scoly</a>
+    <nav class="header-nav" aria-label="Navigation principale">
+      <button onclick="window.location.href='../pages/certificat.html'" aria-label="Générer mon certificat">
+        Générer mon certificat
+      </button>
+    </nav>
+  </header>
+
+  <!-- CONTENU PRINCIPAL -->
+  <main class="main-content">
+    <h1 class="page-title">Comment ça marche ?</h1>
+    <p class="page-subtitle">
+      Générez votre certificat de scolarité en seulement 3 étapes simples. 
+      Le processus est rapide, sécurisé et entièrement en ligne.
+    </p>
+
+    <!-- ÉTAPES -->
+    <div class="steps-container">
+      <!-- ÉTAPE 1 -->
+      <div class="step-card">
+        <div class="step-number">1</div>
+        <h2 class="step-title">Remplissage du formulaire</h2>
+        <p class="step-description">
+          Saisissez vos informations personnelles et scolaires dans notre formulaire sécurisé. 
+          Nom, prénom, établissement, niveau d'études... Toutes vos données sont protégées.
+        </p>
+      </div>
+
+      <!-- ÉTAPE 2 -->
+      <div class="step-card">
+        <div class="step-number">2</div>
+        <h2 class="step-title">Lancement de la génération</h2>
+        <p class="step-description">
+          Cliquez sur "Générer" et notre système crée automatiquement votre certificat 
+          de scolarité avec toutes les informations requises et le formatage officiel.
+        </p>
+      </div>
+
+      <!-- ÉTAPE 3 -->
+      <div class="step-card">
+        <div class="step-number">3</div>
+        <h2 class="step-title">Paiement et téléchargement</h2>
+        <p class="step-description">
+          Effectuez le paiement sécurisé et téléchargez immédiatement votre certificat 
+          au format PDF. Vous recevrez également une copie par email.
+        </p>
+      </div>
+    </div>
+
+    <!-- SECTION CTA -->
+    <section class="cta-section">
+      <h2 class="cta-title">Prêt à commencer ?</h2>
+      <p class="cta-description">
+        Générez votre certificat de scolarité maintenant et gagnez du temps dans vos démarches administratives.
+      </p>
+      <a href="certificat.html" class="cta-btn" aria-label="Commencer la génération du certificat">
+        Générer mon certificat maintenant
+      </a>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>&copy; 2024 Scoly. Tous droits réservés. | Génération sécurisée de certificats de scolarité</p>
+  </footer>
+
+  <script>
+    // Animation d'apparition progressive des cartes
+    window.addEventListener('DOMContentLoaded', function() {
+      const cards = document.querySelectorAll('.step-card');
+      cards.forEach((card, index) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(30px)';
+        
+        setTimeout(() => {
+          card.style.transition = 'all 0.6s ease';
+          card.style.opacity = '1';
+          card.style.transform = 'translateY(0)';
+        }, index * 200);
+      });
+    });
+
+    // Effet de parallaxe léger sur les cardes
+    window.addEventListener('scroll', function() {
+      const cards = document.querySelectorAll('.step-card');
+      const scrolled = window.pageYOffset;
+      
+      cards.forEach((card, index) => {
+        const speed = 0.1;
+        card.style.transform = `translateY(${scrolled * speed * (index + 1) * 0.1}px)`;
+      });
+    });
+  </script>
+</body>
+</html>
