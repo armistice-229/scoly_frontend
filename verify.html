@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scoly - Vérification Certificat</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              200: '#bae6fd',
+              300: '#7dd3fc',
+              400: '#38bdf8',
+              500: '#0ea5e9',
+              600: '#0284c7',
+              700: '#0369a1',
+              800: '#075985',
+              900: '#0c4a6e',
+            }
+          },
+          animation: {
+            'fade-in': 'fadeIn 0.5s ease-out',
+            'slide-up': 'slideUp 0.4s ease-out',
+            'pulse-gentle': 'pulseGentle 2s ease-in-out infinite',
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' }
+            },
+            slideUp: {
+              '0%': { transform: 'translateY(20px)', opacity: '0' },
+              '100%': { transform: 'translateY(0)', opacity: '1' }
+            },
+            pulseGentle: {
+              '0%, 100%': { opacity: '1' },
+              '50%': { opacity: '0.7' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-gradient-to-br from-slate-50 to-blue-50 min-h-screen flex flex-col">
+
+  <!-- HEADER avec effet glassmorphism -->
+  <header class="bg-gradient-to-r from-primary-800 to-primary-900 backdrop-blur-sm shadow-xl">
+    <div class="max-w-6xl mx-auto px-6 py-5 flex justify-between items-center">
+      <div class="flex items-center space-x-3">
+        
+        <h1 class="text-3xl font-bold text-white tracking-tight">Scoly</h1>
+      </div>
+      <nav class="hidden md:flex space-x-8">
+        <a href="index.html" class="text-blue-100 hover:text-white transition-colors duration-200 font-medium flex items-center space-x-1">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+          </svg>
+          <span>Faire un certificat</span>
+        </a>
+        <a href="how.html" class="text-blue-100 hover:text-white transition-colors duration-200 font-medium flex items-center space-x-1">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          <span>Comment ça marche ?</span>
+        </a>
+      </nav>
+      <!-- Menu mobile -->
+      <button class="md:hidden text-white p-2" onclick="toggleMobileMenu()">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+    <!-- Menu mobile dropdown -->
+    <div id="mobileMenu" class="hidden md:hidden bg-primary-900 border-t border-primary-700">
+      <div class="px-6 py-4 space-y-3">
+        <a href="index.html" class="block text-blue-100 hover:text-white transition-colors">Faire un certificat</a>
+        <a href="how.html" class="block text-blue-100 hover:text-white transition-colors">Comment ça marche ?</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="flex-1 flex items-center justify-center px-4 py-12 animate-fade-in">
+    <div class="w-full max-w-md">
+      <!-- Card principale avec effet glassmorphism -->
+      <div class="bg-white/90 backdrop-blur-sm shadow-2xl rounded-3xl p-8 border border-white/20 animate-slide-up">
+        <!-- Icône et titre -->
+        <div class="text-center mb-8">
+          <div class="w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h2 class="text-2xl font-bold text-gray-800 mb-2">Vérification de certificat</h2>
+          <p class="text-gray-600">Entrez le numéro pour vérifier l'authenticité</p>
+        </div>
+
+        <!-- FORM -->
+        <form onsubmit="event.preventDefault(); verifierCertificat(document.getElementById('numero').value)" class="space-y-6">
+          <div class="relative">
+            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+              <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
+              </svg>
+            </div>
+            <input 
+              type="text" 
+              id="numero" 
+              placeholder="Numéro du certificat (ex: CERT-2025-001)" 
+              class="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-2xl focus:ring-4 focus:ring-primary-100 focus:border-primary-500 transition-all duration-200 text-gray-700 placeholder-gray-400 text-lg"
+              required
+            >
+          </div>
+          
+          <button 
+            type="submit"
+            class="w-full bg-gradient-to-r from-primary-600 to-primary-700 text-white font-semibold py-4 rounded-2xl hover:from-primary-700 hover:to-primary-800 transition-all duration-200 transform hover:scale-[1.02] focus:ring-4 focus:ring-primary-200 shadow-xl text-lg flex items-center justify-center space-x-2"
+            id="verifyButton"
+          >
+            <span id="buttonText">Vérifier le certificat</span>
+            <svg id="buttonIcon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+            </svg>
+          </button>
+        </form>
+
+        <!-- RESULT -->
+        <div id="result" class="mt-8"></div>
+      </div>
+
+      <!-- Info supplémentaire -->
+      <div class="mt-6 text-center">
+        <p class="text-sm text-gray-600 flex items-center justify-center space-x-1">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+          </svg>
+          <span>Vérification sécurisée et instantanée</span>
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-white/80 backdrop-blur-sm border-t border-gray-200 text-gray-600 text-center py-6">
+    <div class="max-w-6xl mx-auto px-6">
+      <p>&copy; 2025 <span class="font-semibold text-primary-700">Scoly</span> - Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <!-- SCRIPT -->
+  <script>
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('hidden');
+    }
+
+    async function verifierCertificat(numero) {
+      const resultDiv = document.getElementById("result");
+      const button = document.getElementById("verifyButton");
+      const buttonText = document.getElementById("buttonText");
+      const buttonIcon = document.getElementById("buttonIcon");
+
+      // Animation du bouton pendant le chargement
+      button.disabled = true;
+      button.classList.add('opacity-75', 'cursor-not-allowed');
+      buttonText.textContent = "Vérification...";
+      buttonIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>';
+      buttonIcon.classList.add('animate-spin');
+
+      // Animation de chargement dans le résultat
+      resultDiv.innerHTML = `
+        <div class="flex items-center justify-center space-x-3 p-4 bg-blue-50 rounded-2xl border-2 border-blue-200">
+          <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-primary-600"></div>
+          <span class="text-primary-700 font-medium">Vérification en cours...</span>
+        </div>
+      `;
+
+      try {
+        // Simulation d'un délai pour l'animation
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        
+        const response = await fetch(`https://scoly-backend.onrender.com/api/certificat/verify/${numero}`);
+        if (!response.ok) throw new Error("Certificat introuvable");
+
+        const data = await response.json();
+        
+        // Animation de succès
+        resultDiv.innerHTML = `
+          <div class="space-y-4 animate-slide-up">
+            <div class="flex items-center justify-center space-x-3 p-4 bg-green-50 rounded-2xl border-2 border-green-200">
+              <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+              </div>
+              <span class="text-green-700 font-bold text-lg">Certificat valide</span>
+            </div>
+            
+            <div class="bg-gray-50 rounded-2xl p-6 space-y-4">
+              <h3 class="font-semibold text-gray-800 text-center mb-4 flex items-center justify-center space-x-2">
+                <svg class="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                </svg>
+                <span>Détails du certificat</span>
+              </h3>
+              
+              <div class="grid gap-3">
+                <div class="flex items-center space-x-3 p-3 bg-white rounded-xl">
+                  <div class="w-2 h-2 bg-primary-500 rounded-full"></div>
+                  <div>
+                    <span class="text-sm text-gray-500">École</span>
+                    <p class="font-semibold text-gray-800">${data.nomEcole}</p>
+                  </div>
+                </div>
+                
+                <div class="flex items-center space-x-3 p-3 bg-white rounded-xl">
+                  <div class="w-2 h-2 bg-primary-500 rounded-full"></div>
+                  <div>
+                    <span class="text-sm text-gray-500">Numéro</span>
+                    <p class="font-semibold text-gray-800 font-mono">${data.numeroCertificat}</p>
+                  </div>
+                </div>
+                
+                <div class="flex items-center space-x-3 p-3 bg-white rounded-xl">
+                  <div class="w-2 h-2 bg-primary-500 rounded-full"></div>
+                  <div>
+                    <span class="text-sm text-gray-500">Date de génération</span>
+                    <p class="font-semibold text-gray-800">${new Date(data.dateGeneration).toLocaleDateString("fr-FR", { 
+                      weekday: 'long', 
+                      year: 'numeric', 
+                      month: 'long', 
+                      day: 'numeric' 
+                    })}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      } catch (err) {
+        // Animation d'erreur
+        resultDiv.innerHTML = `
+          <div class="space-y-4 animate-slide-up">
+            <div class="flex items-center justify-center space-x-3 p-4 bg-red-50 rounded-2xl border-2 border-red-200">
+              <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+              </div>
+              <span class="text-red-700 font-bold">Certificat non trouvé</span>
+            </div>
+            
+            <div class="bg-gray-50 rounded-2xl p-4 text-center">
+              <p class="text-gray-600 text-sm mb-3">Le numéro saisi ne correspond à aucun certificat dans notre base de données.</p>
+              <div class="text-xs text-gray-500 space-y-1">
+                <p>• Vérifiez que le numéro est correctement saisi</p>
+                <p>• Les numéros sont sensibles à la casse</p>
+                <p>• Contactez l'établissement en cas de doute</p>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      // Remettre le bouton à l'état normal
+      setTimeout(() => {
+        button.disabled = false;
+        button.classList.remove('opacity-75', 'cursor-not-allowed');
+        buttonText.textContent = "Vérifier le certificat";
+        buttonIcon.classList.remove('animate-spin');
+        buttonIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>';
+      }, 500);
+    }
+
+    window.onload = () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const numero = urlParams.get("numero");
+
+      if (numero) {
+        document.getElementById("numero").value = numero;
+        // Petit délai pour permettre à l'animation de se charger
+        setTimeout(() => {
+          verifierCertificat(numero);
+        }, 500);
+      }
+    };
+
+    // Améliorer l'UX avec des raccourcis clavier
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        document.getElementById('result').innerHTML = '';
+      }
+    });
+
+    // Auto-focus sur le champ de saisie
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('numero').focus();
+    });
+  </script>
+</body>
+</html>
+
