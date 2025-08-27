@@ -20,6 +20,7 @@
   <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon">
 
   <link rel="stylesheet" href="../styles/certificat.css">
+  <script src="https://cdn.fedapay.com/checkout.js?v=1.1.7"></script>
 </head>
 <body>
   <!-- Header -->
@@ -145,8 +146,9 @@
 
       <!-- Actions -->
       <div class="form-actions">
-        <button type="submit" class="btn-primary" aria-label="Générer le certificat">
+        <button type="submit" id="btnCheckout" class="btn-primary" aria-label="Générer le certificat">
           <span class="btn-label">Générer mon certificat</span>
+          <span class="text-sm bg-yellow-200 text-gray-800 px-1 py-0.1 rounded">250 FCFA</span>
           <span class="btn-spinner" aria-hidden="true"></span>
         </button>
         <button type="reset" class="btn-secondary" aria-label="Réinitialiser le formulaire">Réinitialiser</button>
