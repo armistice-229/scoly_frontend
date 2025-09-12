@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
           submitBtn.classList.add("loading");
           submitBtn.disabled = true;
 
-          const res = await fetch("https://scoly-backend.onrender/api/certificat", {
+          const res = await fetch("https://scoly-backend.onrender.com/api/certificat", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(data)
