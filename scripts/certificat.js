@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Initialisation du widget FedaPay
   FedaPay.init('#btnCheckout', {
-    public_key: "pk_sandbox_MzRYR_dNY8mLjA8BKJHxaV0I", // ⚠️ Mets ta clé publique live en prod
+    public_key: "pk_live_2dkPm2oKI6Jl9fDN2tnfmCN7", // ⚠️ Mets ta clé publique live en prod
     transaction: {
       description: "Certificat de scolarité",
       amount: 250,
